@@ -72,3 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Unity/Performance2D/Assets/SceneDependencyCache
 Unity/Performance2D/Assets/SceneDependencyCache.meta
+*.vsconfig
