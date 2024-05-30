@@ -12,7 +12,8 @@ public class SpawnerBaker : Baker<SpawnerAuthoring>
 {
     public override void Bake(SpawnerAuthoring authoring)
     {
-        Entity entity = GetEntity(TransformUsageFlags.None);
+        Entity entity = GetEntity(TransformUsageFlags.Dynamic);
+        
         AddComponent(entity, new Spawner
         {
             prefab = GetEntity(authoring.prefab, TransformUsageFlags.Dynamic),
@@ -21,7 +22,8 @@ public class SpawnerBaker : Baker<SpawnerAuthoring>
             isStarted = false,
             currentPrefabsCount = 0,
             selectedPrefabsCount = 0,
-            prefabsCountIncrement = 100
+            prefabsCountIncrement = 100,
+            radius = 1.0f
         });
     }
 }

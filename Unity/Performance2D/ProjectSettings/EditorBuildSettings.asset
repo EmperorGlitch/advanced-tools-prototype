@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/2D Test.unity
-    guid: eaa920060c144bf4b8c0ce98dd192af5
+    path: Assets/Scenes/2D - Empty.unity
+    guid: 6edb01e483581524c96e442f203b2553
   - enabled: 1
-    path: Assets/Scenes/3D Test.unity
-    guid: 250d0c74c6add06449f1465c3eaac20d
+    path: Assets/Scenes/2D - MonoBehaviour.unity
+    guid: 55408e1d634430d4f9a31cfa4e406419
   - enabled: 1
-    path: Assets/Scenes/3D Test Fish.unity
-    guid: 9c2d9242258c47b4eb5252842ddf8d13
+    path: Assets/Scenes/2D - ECS Empty.unity
+    guid: 1d20042d91bbc5d4cb7870ab0ea607c5
   - enabled: 1
-    path: Assets/Scenes/3D Test Quad.unity
-    guid: c327224eb5ec76d49acc3cb996c6cf64
+    path: Assets/Scenes/2D - ECS.unity
+    guid: 4c5ac0840fb9f5546825b375d7875a93
   m_configObjects: {}

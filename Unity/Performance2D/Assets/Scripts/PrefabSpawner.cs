@@ -11,12 +11,14 @@ public class PrefabSpawner : MonoBehaviour
     private int selectedPrefabsCount;
     private int prefabsCountIncrement;
 
+    private float radius = 1;
+
     private void Start()
     {
         isStarted = false;
         prefabsCountIncrement = 100;
     }
- 
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -24,6 +26,8 @@ public class PrefabSpawner : MonoBehaviour
             isStarted = true;
 
             selectedPrefabsCount += prefabsCountIncrement;
+
+            radius += 0.5f;
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -38,13 +42,16 @@ public class PrefabSpawner : MonoBehaviour
                 prefabsCountIncrement /= 10;
         }
 
-          if (isStarted && selectedPrefabsCount > currentPrefabsCount)
+        if (isStarted && selectedPrefabsCount > currentPrefabsCount)
         {
             int spawnedCount = Mathf.Min(maxSpawnedPrefabsPerFrame, selectedPrefabsCount - currentPrefabsCount);
 
             for (int i = 0; i < spawnedCount; i++)
             {
-                Instantiate(prefab, Vector3.zero, Quaternion.identity);
+                Vector3 position = new Vector3(radius * MathF.Cos(2 * (float)Math.PI * i / spawnedCount), 
+                radius * MathF.Sin(2 * (float)Math.PI * i / spawnedCount), 0);
+
+                Instantiate(prefab, position, Quaternion.identity);
                 currentPrefabsCount++;
             }
 

@@ -9,4 +9,5 @@ public struct Spawner : IComponentData
     public int currentPrefabsCount;
     public int selectedPrefabsCount;
     public int prefabsCountIncrement;
+    public float radius;
 }

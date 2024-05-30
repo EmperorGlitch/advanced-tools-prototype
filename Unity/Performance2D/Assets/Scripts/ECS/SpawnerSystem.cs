@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 public partial class SpawnerSystem : SystemBase
 {
@@ -21,6 +23,7 @@ public partial class SpawnerSystem : SystemBase
                 spawner.ValueRW.isStarted = true;
 
                 spawner.ValueRW.selectedPrefabsCount += spawner.ValueRO.prefabsCountIncrement;
+                spawner.ValueRW.radius += 0.1f;
             }
 
             if (!spawner.ValueRO.isStarted) continue;
@@ -46,7 +49,13 @@ public partial class SpawnerSystem : SystemBase
 
                 spawner.ValueRW.nextSpawn += spawner.ValueRO.spawnRate;
                 spawner.ValueRW.currentPrefabsCount++;
+
+                float3 position = new float3(spawner.ValueRO.radius * MathF.Cos(2 * (float)Math.PI * (spawner.ValueRW.selectedPrefabsCount - spawner.ValueRW.currentPrefabsCount) / spawner.ValueRO.prefabsCountIncrement), 
+                spawner.ValueRO.radius * MathF.Sin(2 * (float)Math.PI * (spawner.ValueRW.selectedPrefabsCount - spawner.ValueRW.currentPrefabsCount) / spawner.ValueRO.prefabsCountIncrement), 0);
+
                 Entity newEntity = EntityManager.Instantiate(spawner.ValueRO.prefab);
+
+                EntityManager.SetComponentData(newEntity, LocalTransform.FromPositionRotationScale(position, quaternion.identity, 0.05f));
             }
 
             OnSpawn?.Invoke(spawner.ValueRO.currentPrefabsCount);
