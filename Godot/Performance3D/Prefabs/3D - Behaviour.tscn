@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjiuqliajjax1"]
+
+[ext_resource type="PackedScene" uid="uid://be2c4mxj3s4lw" path="res://Models/simple_fish.fbx" id="1_afg6s"]
+[ext_resource type="Script" path="res://Performance3D/Scripts/Behaviour3D.cs" id="2_8j5x1"]
+
+[node name="3D - Behaviour" type="Node3D"]
+
+[node name="Root Scene" parent="." instance=ExtResource("1_afg6s")]
+script = ExtResource("2_8j5x1")

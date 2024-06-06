@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6nut82rlp7c"]
+
+[ext_resource type="Texture2D" uid="uid://bn1l0j7357uvm" path="res://Sprites/simple_humster.png" id="1_w8krs"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/MultiMeshSpawner2D.cs" id="2_n3fjd"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/PrefabSpawner.gd" id="4_88w4k"]
+[ext_resource type="PackedScene" uid="uid://wt1kccyxf3sa" path="res://Performance2D/Prefabs/2D - Empty.tscn" id="5_unpeg"]
+[ext_resource type="PackedScene" uid="uid://d3m1n3laqwu5n" path="res://Performance2D/Prefabs/2D - Behaviour.tscn" id="6_63sj8"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/SceneHandler.gd" id="6_65jlw"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/FPSController.gd" id="7_k0nt1"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_k8wq0"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_m2mus"]
+mesh = SubResource("QuadMesh_k8wq0")
+
+[sub_resource type="LabelSettings" id="LabelSettings_j1w1u"]
+font_size = 60
+font_color = Color(0.239216, 0.239216, 0.239216, 1)
+outline_size = 4
+
+[node name="RootNode" type="Node2D"]
+script = ExtResource("6_65jlw")
+
+[node name="2D - MultiMesh" type="MultiMeshInstance2D" parent="." node_paths=PackedStringArray("prefabCountLabel", "sceneNameLabel")]
+position = Vector2(960, 540)
+scale = Vector2(35, -35)
+multimesh = SubResource("MultiMesh_m2mus")
+texture = ExtResource("1_w8krs")
+script = ExtResource("2_n3fjd")
+radius = 7.0
+movementSpeed = 7.0
+action = "spawn_multimesh"
+prefabCountLabel = NodePath("../HUD/Prefab Count Text")
+sceneNameLabel = NodePath("../HUD/Scene Name Text")
+
+[node name="2D - Empty" type="Node2D" parent="." node_paths=PackedStringArray("sceneNameLabel", "prefabCountLabel")]
+script = ExtResource("4_88w4k")
+prefab = ExtResource("5_unpeg")
+sceneNameLabel = NodePath("../HUD/Scene Name Text")
+prefabCountLabel = NodePath("../HUD/Prefab Count Text")
+action = "spawn_empty"
+
+[node name="2D - Behaviour" type="Node2D" parent="." node_paths=PackedStringArray("sceneNameLabel", "prefabCountLabel")]
+script = ExtResource("4_88w4k")
+prefab = ExtResource("6_63sj8")
+sceneNameLabel = NodePath("../HUD/Scene Name Text")
+prefabCountLabel = NodePath("../HUD/Prefab Count Text")
+action = "spawn_behaviour"
+
+[node name="HUD" type="Node" parent="."]
+
+[node name="Scene Name Text" type="Label" parent="HUD"]
+offset_left = 95.0
+offset_top = 17.0
+offset_right = 457.0
+offset_bottom = 113.0
+text = "Scene: "
+label_settings = SubResource("LabelSettings_j1w1u")
+
+[node name="Prefab Count Text" type="Label" parent="HUD"]
+offset_left = 95.0
+offset_top = 92.0
+offset_right = 457.0
+offset_bottom = 188.0
+text = "Count: 0"
+label_settings = SubResource("LabelSettings_j1w1u")
+
+[node name="FPS Text" type="Label" parent="HUD"]
+modulate = Color(0, 1, 0.901961, 1)
+offset_left = 93.0
+offset_top = 169.0
+offset_right = 455.0
+offset_bottom = 265.0
+text = "FPS: 100"
+label_settings = SubResource("LabelSettings_j1w1u")
+script = ExtResource("7_k0nt1")

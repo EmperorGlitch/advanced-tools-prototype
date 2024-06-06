@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3m1n3laqwu5n"]
+
+[ext_resource type="Texture2D" uid="uid://bn1l0j7357uvm" path="res://Sprites/simple_humster.png" id="1_nr35v"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/Behaviour2D.cs" id="2_75o52"]
+
+[node name="2D - Behaviour" type="Sprite2D"]
+position = Vector2(960, 540)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("1_nr35v")
+script = ExtResource("2_75o52")

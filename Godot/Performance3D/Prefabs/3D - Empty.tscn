@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfqk2xef20pwu"]
+
+[ext_resource type="PackedScene" uid="uid://be2c4mxj3s4lw" path="res://Models/simple_fish.fbx" id="1_75ss3"]
+
+[node name="3D - Empty" type="Node3D"]
+
+[node name="Root Scene" parent="." instance=ExtResource("1_75ss3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00206375, 0, 0.00277817)

@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://do6ahejrldpx6"]
+
+[ext_resource type="Script" path="res://Performance3D/Scripts/MultiMeshSpawner3D.cs" id="1_kye4b"]
+[ext_resource type="ArrayMesh" uid="uid://dq7e7b6x41452" path="res://Models/simple_fish.mesh" id="2_ny4di"]
+[ext_resource type="PackedScene" uid="uid://cfqk2xef20pwu" path="res://Performance3D/Prefabs/3D - Empty.tscn" id="5_eg8jp"]
+[ext_resource type="PackedScene" uid="uid://bjiuqliajjax1" path="res://Performance3D/Prefabs/3D - Behaviour.tscn" id="6_0t3yw"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/PrefabSpawner.gd" id="6_4vthu"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/SceneHandler.gd" id="12_hqel5"]
+[ext_resource type="Script" path="res://Performance2D/Scripts/FPSController.gd" id="13_5m1r6"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_w6lje"]
+transform_format = 1
+mesh = ExtResource("2_ny4di")
+
+[sub_resource type="LabelSettings" id="LabelSettings_knhp5"]
+font_size = 60
+font_color = Color(0.239216, 0.239216, 0.239216, 1)
+outline_size = 4
+
+[node name="RootNode" type="Node3D"]
+script = ExtResource("12_hqel5")
+
+[node name="3D - MultiMesh" type="MultiMeshInstance3D" parent="." node_paths=PackedStringArray("prefabCountLabel", "sceneNameLabel")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
+multimesh = SubResource("MultiMesh_w6lje")
+script = ExtResource("1_kye4b")
+radius = 0.8
+action = "spawn_multimesh"
+prefabCountLabel = NodePath("../HUD/Prefab Count Text")
+sceneNameLabel = NodePath("../HUD/Scene Name Text")
+
+[node name="3D - Empty" type="Node3D" parent="." node_paths=PackedStringArray("sceneNameLabel", "prefabCountLabel")]
+transform = Transform3D(0.586726, 0, 0, 0, 0.586726, 0, 0, 0, -0.000196915, 0, 0, 0)
+script = ExtResource("6_4vthu")
+prefab = ExtResource("5_eg8jp")
+sceneNameLabel = NodePath("../HUD/Scene Name Text")
+prefabCountLabel = NodePath("../HUD/Prefab Count Text")
+action = "spawn_empty"
+
+[node name="3D - Behaviour" type="Node3D" parent="." node_paths=PackedStringArray("sceneNameLabel", "prefabCountLabel")]
+transform = Transform3D(0.586726, 0, 0, 0, 0.586726, 0, 0, 0, -0.000196915, 0, 0, 0)
+script = ExtResource("6_4vthu")
+prefab = ExtResource("6_0t3yw")
+sceneNameLabel = NodePath("../HUD/Scene Name Text")
+prefabCountLabel = NodePath("../HUD/Prefab Count Text")
+action = "spawn_behaviour"
+
+[node name="HUD" type="Node" parent="."]
+
+[node name="Scene Name Text" type="Label" parent="HUD"]
+offset_left = 95.0121
+offset_top = 6.98236
+offset_right = 457.012
+offset_bottom = 102.982
+text = "Scene: "
+label_settings = SubResource("LabelSettings_knhp5")
+
+[node name="Prefab Count Text" type="Label" parent="HUD"]
+offset_left = 95.0
+offset_top = 94.0
+offset_right = 457.0
+offset_bottom = 190.0
+text = "Count: 0"
+label_settings = SubResource("LabelSettings_knhp5")
+
+[node name="FPS Text" type="Label" parent="HUD"]
+modulate = Color(0, 1, 0.901961, 1)
+offset_left = 93.0
+offset_top = 185.0
+offset_right = 455.0
+offset_bottom = 281.0
+text = "FPS: 100"
+label_settings = SubResource("LabelSettings_knhp5")
+script = ExtResource("13_5m1r6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.488, 0.502, 6.938)
+size = 9.975
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.97265, 0.232275, 0, -0.232275, 0.97265, -0.31, -0.935, 0.0970058)
