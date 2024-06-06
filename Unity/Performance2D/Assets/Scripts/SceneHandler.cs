@@ -13,5 +13,11 @@ public class SceneHandler : MonoBehaviour
             SceneManager.LoadSceneAsync(2);
         else if (Input.GetKeyUp(KeyCode.Alpha4))
             SceneManager.LoadSceneAsync(3);
+        else if (Input.GetKeyUp(KeyCode.Alpha5))
+            SceneManager.LoadSceneAsync(4);
+        else if (Input.GetKeyUp(KeyCode.Alpha6))
+            SceneManager.LoadSceneAsync(5);
+        else if (Input.GetKeyUp(KeyCode.Alpha7))
+            SceneManager.LoadSceneAsync(6);
     }
 }

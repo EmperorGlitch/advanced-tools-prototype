@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2D - ECS.unity
     guid: 4c5ac0840fb9f5546825b375d7875a93
+  - enabled: 1
+    path: Assets/Scenes/3D - Empty.unity
+    guid: 0f42db33d05647d4cba8e6fc73a1593b
+  - enabled: 1
+    path: Assets/Scenes/3D - Behaviour.unity
+    guid: 514f197de7671de41b6645075f947bb0
+  - enabled: 1
+    path: Assets/Scenes/3D - ECS Behaviour.unity
+    guid: 3a212af45b9908e4eac1193c7da3abce
   m_configObjects: {}
